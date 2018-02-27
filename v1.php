@@ -15,7 +15,7 @@
 	<div class="row">
 		<table border="1">
 			<tr>
-				<td class="vc_celda" id="vc_c1"><img src="img/creature2.gif"></td>
+				<td class="vc_celda" id="vc_c1"></td>
 				<td class="vc_celda" id="vc_c2"></td>
 				<td class="vc_celda" id="vc_c3"></td>
 				<td class="vc_celda" id="vc_c4"></td>
@@ -24,7 +24,7 @@
 				<td class="vc_celda" id="vc_c7"></td>
 				<td class="vc_celda" id="vc_c8"></td>
 				<td class="vc_celda" id="vc_c9"></td>
-				<td class="vc_celda" id="vc_c10"></td>
+				<td class="vc_celda" id="vc_c10"><img src="img/creature2.gif"></td>
 				<td class="vc_celda" id="vc_c11"></td>
 				<td class="vc_celda" id="vc_c12"></td>
 				<td class="vc_celda" id="vc_c13"></td>
