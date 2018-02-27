@@ -5,10 +5,9 @@
 <div class="container">
 	<div class="jumbotron">
 	  <h1 class="display-4">Hello! Welcome to VirtualCreature.com</h1>
-	  <p class="lead">Coming soon: 04/04/2018.</p>
+	  <p class="lead">Coming 4 march 2018</p>
 	</div>
 	<div class="row" style="text-align: center">
-
 		<div class="col-md-2">
 			<img src="img/creature1.gif">
 		</div>
@@ -27,7 +26,6 @@
 		<div class="col-md-2">
 			<img src="img/creature7.gif">
 		</div>	
-
 	</div>
 
 </div>
