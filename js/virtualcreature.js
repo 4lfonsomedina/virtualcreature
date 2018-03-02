@@ -3,7 +3,6 @@ $(document).ready(function(){
 	var t_caminar = setInterval(function(){ caminar(); }, 8000);
 	
 	function caminar(){
-		// 0 - izq , 1 - der
 		var dir 		= Math.floor((Math.random() * 2)+1);
 		var imagen 		= "";
 		var posicion 	= "";
@@ -19,4 +18,13 @@ $(document).ready(function(){
 		if(dir==1){posicion--;}else{posicion++;}
 		$("#vc_c"+posicion).html(imagen);
 	}
+
+	//menu
+	$( ".vc_menu a" ).hover(
+	  function() {
+	  	$(this).find("img").attr("src","/img/menu/h_"+$(this).attr("btn")+".png");
+	  }, function() {
+	    $(this).find("img").attr("src","/img/menu/"+$(this).attr("btn")+".png");
+	  }
+	);
 })
