@@ -31,6 +31,10 @@
 		.a{
 			padding-top: 110px;
 		}
+		.vc_celda_estatus{
+			text-align: center;
+			padding: 10px;
+		}
 
 	</style>
 </head>
@@ -53,7 +57,7 @@
 						<div class="panel panel-default" style="height: 100%">
 							<div class="panel-body">
 
-								<table>
+								<table >
 									<tr>
 										<td class="vc_celda_estatus" id="vc_ce1"></td>
 										<td class="vc_celda_estatus" id="vc_ce2"></td>
@@ -64,7 +68,7 @@
 										<td class="vc_celda_estatus" id="vc_ce7"></td>
 										<td class="vc_celda_estatus" id="vc_ce8"></td>
 										<td class="vc_celda_estatus" id="vc_ce9"></td>
-										<td class="vc_celda_estatus" id="vc_ce10"></td>
+										<td class="vc_celda_estatus" id="vc_ce10"><img src="img/creature/estatus/estatus2.gif"></td>
 										<td class="vc_celda_estatus" id="vc_ce11"></td>
 										<td class="vc_celda_estatus" id="vc_ce12"></td>
 										<td class="vc_celda_estatus" id="vc_ce13"></td>
