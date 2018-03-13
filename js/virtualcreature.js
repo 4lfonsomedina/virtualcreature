@@ -52,7 +52,6 @@ $(document).ready(function(){
 
 	}//alegria
 
-
 //comer
 $("#btn_m_comer").click(function(){
 	if(ocupado()){
@@ -67,30 +66,58 @@ function comer(){
 	var criatura_actual  = $("#vc_c"+posicion).html();
 	var estado_actual  = $("#vc_ce"+posicion).html();
 	if(posicion==20){posicion=posicion-1;}
-	var pos_comida = posicion+1;
-	$("#vc_c"+pos_comida).html(ima_cominda);
+	$("#vc_c"+(posicion+1)).html(ima_cominda);
 	$("#vc_c"+posicion).html("<img src='img/creature/"+lvl+"/creature4.gif'>");
 	setTimeout(function(){
 			$("#vc_c"+posicion).html(criatura_actual);
-			$("#vc_c"+pos_comida).html("");
+			$("#vc_c"+(posicion+1)).html("");
 			$("#vc_ce"+posicion).html(estado_actual);
 			alegria();
 			estado_normal_iniciar();
 		},7500);
 }//comer
 
+//banio
+$("#btn_m_limpiar").click(function(){
+	if(ocupado()){
+		banio();
+	}
+})
+function banio(){
+	var posicion = get_posicion();
+	var lvl = "lvl1";
+	var ima_banio = "<img src='img/acciones/bano.gif'>";
+	estado_normal_parar();
+	var criatura_actual  = $("#vc_c"+posicion).html();
+	var estado_actual  = $("#vc_ce"+posicion).html();
+	if(posicion==20){posicion=posicion-1;}
+	$("#vc_ce"+(posicion+1)).html(ima_banio);
+	$("#vc_c"+posicion).html("<img src='img/creature/"+lvl+"/creature1.gif'>");
+	setTimeout(function(){
+			$("#vc_c"+posicion).html(criatura_actual);
+			$("#vc_ce"+(posicion+1)).html("");
+			$("#vc_ce"+posicion).html(estado_actual);// aqui hay que quitar las moscas en caso de tenerlas
+			alegria();
+			estado_normal_iniciar();
+		},7500);
+}//comer
+//banio
 
-//funcion de ocupacion
+//funcion de ocupacion es para verificar que no este ocupado al querer ejecutar otra accion
 function ocupado(){
 	var ocu = false;
 	$(".vc_celda").each(function(index){
 		var posicion 	= parseInt(this.id.replace("vc_c",""));
-		if($(this).html().indexOf("creature")>=0&&$("#vc_ce"+posicion).html()==""&&$("#vc_c"+(posicion+1)).html()==""){
+		if($(this).html().indexOf("creature")>=0&&
+			$("#vc_ce"+posicion).html()==""&&
+			$("#vc_c"+(posicion+1)).html()==""&&
+			$("#vc_ce"+(posicion+1)).html()==""){
 			ocu=true;
 		}
 	})
 	return ocu;
 }
+//regresa la pocicion de la creatura
 function get_posicion(){
 	var posicion = 0;
 	$(".vc_celda").each(function(index){
