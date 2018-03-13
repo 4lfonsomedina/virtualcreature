@@ -16,49 +16,91 @@ $(document).ready(function(){
 		var imagen 		= "";
 		var imagenE 	= "";
 		var posicion 	= "";
-		$(".vc_celda").each(function(index){
-			if($(this).html()!=''){
-				imagen 		= $(this).html();
-				posicion 	= parseInt(this.id.replace("vc_c",""));
-				imagenE 	= $("#vc_ce"+posicion).html();
-				$("#vc_ce"+posicion).html("");
-				$(this).html("");
-				if(posicion==1){dir=2;}
-				if(posicion==16){dir=1;}
-			}
-		})
+		posicion = get_posicion();
+		imagen 		= $("#vc_c"+posicion).html();
+		imagenE 	= $("#vc_ce"+posicion).html();
+		$("#vc_ce"+posicion).html("");
+		$("#vc_c"+posicion).html("");
+		if(posicion==1){dir=2;}
+		if(posicion==20){dir=1;}
 		if(dir==1){posicion--;}else{posicion++;}
 		$("#vc_c"+posicion).html(imagen);
 		$("#vc_ce"+posicion).html(imagenE);
 	}//caminar
 //alegria
 	$(".vc_celda").click(function(){
-		var posicion 	= parseInt(this.id.replace("vc_c",""));
-		if($(this).html()!=""&&$("#vc_ce"+posicion).html()==""){
+		if($(this).html().indexOf("creature")>=0&&ocupado()){
 			alegria();
 		}
 	})
 	function alegria(){
+		var posicion = get_posicion();
 		var lvl 	= "lvl1";
 		var alegria = "<img src='img/creature/"+lvl+"/creature6.gif'>";
 		var estado 	= "<img src='img/creature/estatus/estatus2.gif'>";
-		$(".vc_celda").each(function(index){
-			if($(this).html()!=''){
-				estado_normal_parar();
-				var posicion 	= parseInt(this.id.replace("vc_c",""));
-				var criatura_actual  = $(this).html();
-				var estado_actual  = $("#vc_ce"+posicion).html();
-				$(this).html(alegria);
-				$("#vc_ce"+posicion).html(estado);
-				setTimeout(function(){
-					$("#vc_c"+posicion).html(criatura_actual);
-					$("#vc_ce"+posicion).html(estado_actual);
-					estado_normal_iniciar();
-				},4000);
-			}
-		});
+		var criatura_actual  = $("#vc_c"+posicion).html();
+		var estado_actual  = $("#vc_ce"+posicion).html();
+		estado_normal_parar();
+		$("#vc_c"+posicion).html(alegria);
+		$("#vc_ce"+posicion).html(estado);
+		setTimeout(function(){
+			$("#vc_c"+posicion).html(criatura_actual);
+			$("#vc_ce"+posicion).html(estado_actual);
+			estado_normal_iniciar();
+		},4000);
+
+
+	}//alegria
+
+
+//comer
+$("#btn_m_comer").click(function(){
+	if(ocupado()){
+		comer();
 	}
-	//alegria
+})
+function comer(){
+	var posicion = get_posicion();
+	var lvl = "lvl1";
+	var ima_cominda = "<img src='img/comida/c"+Math.floor((Math.random() * 3) + 1)+".gif'>";
+	estado_normal_parar();
+	var criatura_actual  = $("#vc_c"+posicion).html();
+	var estado_actual  = $("#vc_ce"+posicion).html();
+	if(posicion==20){posicion=posicion-1;}
+	var pos_comida = posicion+1;
+	$("#vc_c"+pos_comida).html(ima_cominda);
+	$("#vc_c"+posicion).html("<img src='img/creature/"+lvl+"/creature4.gif'>");
+	setTimeout(function(){
+			$("#vc_c"+posicion).html(criatura_actual);
+			$("#vc_c"+pos_comida).html("");
+			$("#vc_ce"+posicion).html(estado_actual);
+			alegria();
+			estado_normal_iniciar();
+		},7500);
+}//comer
+
+
+//funcion de ocupacion
+function ocupado(){
+	var ocu = false;
+	$(".vc_celda").each(function(index){
+		var posicion 	= parseInt(this.id.replace("vc_c",""));
+		if($(this).html().indexOf("creature")>=0&&$("#vc_ce"+posicion).html()==""&&$("#vc_c"+(posicion+1)).html()==""){
+			ocu=true;
+		}
+	})
+	return ocu;
+}
+function get_posicion(){
+	var posicion = 0;
+	$(".vc_celda").each(function(index){
+		if($(this).html().indexOf("creature")>=0){
+			posicion = parseInt(this.id.replace("vc_c",""));
+		}
+	})
+	return posicion;
+}
+
 //menu
 	$( ".vc_menu a" ).hover(
 	  function() {
