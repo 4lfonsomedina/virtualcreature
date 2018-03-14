@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title>VirtualCreature</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/oficial/ico.png" type="image/png" />
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<script src="js/jquerymin.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.js">
