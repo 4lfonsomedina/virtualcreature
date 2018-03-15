@@ -42,7 +42,7 @@ $(".vc_celda").click(function(){
 })
 function alegria(){
 	var posicion = get_posicion();
-	var lvl 	= "lvl1";
+	var lvl 	= get_nivel();
 	var alegria = "<img src='img/creature/"+lvl+"/creature6.gif'>";
 	var estado 	= "<img src='img/creature/estatus/estatus2.gif'>";
 	var criatura_actual  = $("#vc_c"+posicion).html();
@@ -68,7 +68,7 @@ $("#btn_m_comer").click(function(){
 })
 function comer(){
 	var posicion = get_posicion();
-	var lvl = "lvl1";
+	var lvl = get_nivel();
 	var ima_cominda = "<img src='img/comida/c"+Math.floor((Math.random() * 3) + 1)+".gif'>";
 	estado_normal_parar();
 	var criatura_actual  = $("#vc_c"+posicion).html();
@@ -94,7 +94,7 @@ $("#btn_m_limpiar").click(function(){
 })
 function banio(){
 	var posicion = get_posicion();
-	var lvl = "lvl1";
+	var lvl = get_nivel();
 	var ima_banio = "<img src='img/acciones/bano.gif'>";
 	estado_normal_parar();
 	var criatura_actual  = $("#vc_c"+posicion).html();
@@ -120,7 +120,7 @@ $("#btn_m_vacuna").click(function(){
 })
 function vacuna(){
 	var posicion = get_posicion();
-	var lvl = "lvl1";
+	var lvl = get_nivel();
 	var ima_vacuna = "<img src='img/acciones/vacuna.gif'>";
 	estado_normal_parar();
 	var criatura_actual  = $("#vc_c"+posicion).html();
@@ -136,7 +136,32 @@ function vacuna(){
 			estado_normal_iniciar();
 		},7500);
 }
-
+///////////////////////////////////////////////////////////////////////	
+//******************************* LEER *****************************//
+/////////////////////////////////////////////////////////////////////
+$("#btn_m_leer").click(function(){
+	if(ocupado()){
+		leer();
+	}
+})
+function leer(){
+	var posicion = get_posicion();
+	var lvl = get_nivel();
+	var ima_leer = "<img src='img/acciones/leer.gif'>";
+	estado_normal_parar();
+	var criatura_actual  = $("#vc_c"+posicion).html();
+	var estado_actual  = $("#vc_ce"+posicion).html();
+	if(posicion==20){posicion=posicion-1;}
+	$("#vc_c"+(posicion+1)).html(ima_leer);
+	$("#vc_c"+posicion).html("<img src='img/creature/"+lvl+"/creature1.gif'>");
+	setTimeout(function(){
+		$("#vc_c"+posicion).html(criatura_actual);
+		$("#vc_c"+(posicion+1)).html("");
+			$("#vc_ce"+posicion).html(estado_actual);
+			alegria();
+			estado_normal_iniciar();
+		},7500);
+}
 ///////////////////////////////////////////////////////////////////////	
 //****************************** OCUPADO? **************************//
 /////////////////////////////////////////////////////////////////////
@@ -164,6 +189,12 @@ function get_posicion(){
 		}
 	})
 	return posicion;
+}
+///////////////////////////////////////////////////////////////////////	
+//****************************** NIVEL *****************************//
+/////////////////////////////////////////////////////////////////////
+function get_nivel(){
+	return "lvl1";
 }
 ///////////////////////////////////////////////////////////////////////	
 //******************************** MENU **************************//

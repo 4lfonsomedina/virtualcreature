@@ -112,8 +112,8 @@
 					<div class="col-xs-2 vc_menu vc_alto a"><a href="#" btn="m_donar"><img src="img/menu/m_donar.png"></a></div>
 				</div>
 				<div class="row">
-					<div class="col-xs-3 vc_menu"><a href="#" btn="m_ejercicio"><img src="img/menu/m_ejercicio.png"></a></div>
-					<div class="col-xs-3 vc_menu"><a href="#" btn="m_leer"><img src="img/menu/m_leer.png"></a></div>
+					<div class="col-xs-3 vc_menu"><a href="#" id="btn_m_ejercicio" btn="m_ejercicio"><img src="img/menu/m_ejercicio.png"></a></div>
+					<div class="col-xs-3 vc_menu"><a href="#" id="btn_m_leer" btn="m_leer"><img src="img/menu/m_leer.png"></a></div>
 					<div class="col-xs-3 vc_menu"><a href="#" btn="m_batalla"><img src="img/menu/m_batalla.png"></a></div>
 					<div class="col-xs-3 vc_menu"><a href="#" btn="m_clasificacion"><img src="img/menu/m_clasificacion.png"></a></div>
 				</div>
