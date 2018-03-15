@@ -136,32 +136,7 @@ function vacuna(){
 			estado_normal_iniciar();
 		},7500);
 }
-///////////////////////////////////////////////////////////////////////	
-//******************************* VACUNA ***************************//
-/////////////////////////////////////////////////////////////////////
-$("#btn_m_vacuna").click(function(){
-	if(ocupado()){
-		vacuna();
-	}
-})
-function vacuna(){
-	var posicion = get_posicion();
-	var lvl = "lvl1";
-	var ima_vacuna = "<img src='img/acciones/vacuna.gif'>";
-	estado_normal_parar();
-	var criatura_actual  = $("#vc_c"+posicion).html();
-	var estado_actual  = $("#vc_ce"+posicion).html();
-	if(posicion==20){posicion=posicion-1;}
-	$("#vc_ce"+(posicion+1)).html(ima_vacuna);
-	$("#vc_c"+posicion).html("<img src='img/creature/"+lvl+"/creature3.gif'>");
-	setTimeout(function(){
-		$("#vc_c"+posicion).html(criatura_actual);
-		$("#vc_ce"+(posicion+1)).html("");
-			$("#vc_ce"+posicion).html(estado_actual);// aqui hay que quitar las calaca en caso de tenerla
-			alegria();
-			estado_normal_iniciar();
-		},7500);
-}
+
 ///////////////////////////////////////////////////////////////////////	
 //****************************** OCUPADO? **************************//
 /////////////////////////////////////////////////////////////////////
