@@ -163,6 +163,32 @@ function leer(){
 		},7500);
 }
 ///////////////////////////////////////////////////////////////////////	
+//******************************* LEER *****************************//
+/////////////////////////////////////////////////////////////////////
+$("#btn_m_ejercicio").click(function(){
+	if(ocupado()){
+		ejercicio();
+	}
+})
+function ejercicio(){
+	var posicion = get_posicion();
+	var lvl = get_nivel();
+	var ima_ejercicio = "<img src='img/acciones/ejercicio.gif'>";
+	estado_normal_parar();
+	var criatura_actual  = $("#vc_c"+posicion).html();
+	var estado_actual  = $("#vc_ce"+posicion).html();
+	if(posicion==20){posicion=posicion-1;}
+	$("#vc_c"+(posicion+1)).html(ima_ejercicio);
+	$("#vc_c"+posicion).html("<img src='img/creature/"+lvl+"/creature1.gif'>");
+	setTimeout(function(){
+		$("#vc_c"+posicion).html(criatura_actual);
+		$("#vc_c"+(posicion+1)).html("");
+			$("#vc_ce"+posicion).html(estado_actual);
+			alegria();
+			estado_normal_iniciar();
+		},7500);
+}
+///////////////////////////////////////////////////////////////////////	
 //****************************** OCUPADO? **************************//
 /////////////////////////////////////////////////////////////////////
 function ocupado(){
