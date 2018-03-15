@@ -7,6 +7,10 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/virtualcreature.js"></script>
 	<style type="text/css">
+		body{
+			background-color: #FFD700;
+  			background-image: url(/img/wallpapers/w2.png);
+		}
 		table{
 			width: 100%;
 		}
@@ -18,7 +22,6 @@
 			padding-top: 50px;
 		}
 		.vc_menu{
-			
 			padding:10px;
 			text-align: center;
 		}
@@ -36,12 +39,24 @@
 			padding-bottom: 10px;
 			height: 65px !important;
 		}
-
+		.carcasa{
+			border-radius: 30px !important;
+			background: linear-gradient(to bottom right, #ff9933 0%, #cc0000 100%);
+			border-color: gray;
+		}
+		.pantalla{
+			border-radius: 10px !important;
+		}
+		#donate_modal{
+			border-radius: 0px;
+		}
 	</style>
 </head>
 <body>
 	<div class="container">
-		<div class="panel panel-default">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+		<div class="panel panel-default carcasa">
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-xs-3 vc_menu"><a href="#" id="btn_m_comer" btn="m_comer"><img src="img/menu/m_comer.png"></a></div>
@@ -52,11 +67,11 @@
 				<div class="row">
 					<div class="col-xs-2 vc_menu vc_alto a"><a href="#" btn="m_compartir"><img src="img/menu/m_compartir.png"></a></div>
 					<div class="col-xs-8 vc_alto">
-						<div class="col-xs-12" style="height: 155px;">
+						<div class="col-xs-12" style="height: 140px;">
 							
 						</div>
 						<div class="panel panel-default" style="height: 100%">
-							<div class="panel-body">
+							<div class="panel-body pantalla">
 <!--
 								<table border="1">
 --><table>
@@ -109,7 +124,7 @@
 						</div>
 
 					</div>
-					<div class="col-xs-2 vc_menu vc_alto a"><a href="#" btn="m_donar"><img src="img/menu/m_donar.png"></a></div>
+					<div class="col-xs-2 vc_menu vc_alto a"><a href="#" btn="m_donar" id="btn_m_donar"><img src="img/menu/m_donar.png"></a></div>
 				</div>
 				<div class="row">
 					<div class="col-xs-3 vc_menu"><a href="#" id="btn_m_ejercicio" btn="m_ejercicio"><img src="img/menu/m_ejercicio.png"></a></div>
@@ -120,7 +135,47 @@
 				
 			</div>
 		</div>
+		</div>
 	</div>
+
+
+
+
+
+	<div class="modal" id="donate_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      	<center><img src="img/menu/secure_paypal.jpg" width="250px"></a></center>
+      </div>
+      <div class="modal-body">
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="3Q57HV5HAU6UC">
+		<table>
+		<tr><td><input type="hidden" name="on0" value="Donative">Donative for the VirtualCreature developers</td></tr><tr><td><select name="os0" class="form-control">
+			<option value="Water">Water $1.00 USD</option>
+			<option value="Coffee">Coffee $5.00 USD</option>
+			<option value="Beer">Beer $10.00 USD</option>
+		</select> </td></tr>
+		</table>
+		<input type="hidden" name="currency_code" value="USD">
+		<br><br><center>
+		<input type="image" src="http://virtualcreature.habilidades-web.com/img/menu/donate.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		</center>
+		<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+		</form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- load images
+<img data-src="image.jpg" alt="test image">
+-->
 </body>
 </html>
 
