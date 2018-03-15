@@ -2,12 +2,14 @@
 <html>
 <head>
 	<title>VirtualCreature</title>
+	<link rel="shortcut icon" href="/img/wallpapers/icon1.ico" />
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<script src="js/jquerymin.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/virtualcreature.js"></script>
 	<style type="text/css">
 		body{
+			font-family: Courier New;
 			background-color: #FFD700;
   			background-image: url(/img/wallpapers/w2.png);
 		}
@@ -50,6 +52,20 @@
 		#donate_modal{
 			border-radius: 0px;
 		}
+		.res td {
+			padding-top: 15px;
+			font-size: 10px;
+		}
+		.barra1{
+			height: 10px;
+			width: 50px;
+			border: 1px solid black;
+		}
+		.barra2{
+			height: 100%;
+			width: 50%;
+			background-color: black;
+		}
 	</style>
 </head>
 <body>
@@ -68,7 +84,16 @@
 					<div class="col-xs-2 vc_menu vc_alto a"><a href="#" btn="m_compartir"><img src="img/menu/m_compartir.png"></a></div>
 					<div class="col-xs-8 vc_alto">
 						<div class="col-xs-12" style="height: 140px;">
-							
+							<table class="res">
+								<tr>
+									<td><div class="barra1"><div class="barra2" id="hap_bar"></div></div></td><td>Happiness</td>
+									<td><div class="barra1"><div class="barra2" id="int_bar"></div></div></td><td>Intelligence</td>
+								</tr>
+								<tr>
+									<td><div class="barra1"><div class="barra2" id="foo_bar"></div></div></td><td>Food</td>
+									<td><div class="barra1"><div class="barra2" id="for_bar"></div></div></td><td>Force</td>
+								</tr>
+							</table>
 						</div>
 						<div class="panel panel-default" style="height: 100%">
 							<div class="panel-body pantalla">
@@ -173,9 +198,6 @@
     </div>
   </div>
 </div>
-<!-- load images
-<img data-src="image.jpg" alt="test image">
--->
 </body>
 </html>
 
