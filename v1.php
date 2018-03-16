@@ -198,6 +198,39 @@
     </div>
   </div>
 </div>
+
+
+<div class="hidden">
+	<script type="text/javascript">
+			var images = new Array()
+			function preload() {
+				for (i = 0; i < preload.arguments.length; i++) {
+					images[i] = new Image()
+					images[i].src = preload.arguments[i]
+				}
+			}
+			preload(
+				"img/creature/estatus/estatus1.gif",
+				"img/creature/estatus/estatus2.gif",
+				"img/creature/estatus/estatus3.gif",
+				"img/creature/lvl1/creature1.gif",
+				"img/creature/lvl1/creature2.gif",
+				"img/creature/lvl1/creature3.gif",
+				"img/creature/lvl1/creature4.gif",
+				"img/creature/lvl1/creature5.gif",
+				"img/creature/lvl1/creature6.gif",
+				"img/creature/lvl1/creature7.gif",
+				"img/comida/c1.gif",
+				"img/acciones/bano.gif",
+				"img/acciones/caca.gif",
+				"img/acciones/ejercicio.gif",
+				"img/acciones/lca.gif",
+				"img/acciones/leer.gif",
+				"img/acciones/vacuna.gif"
+			)
+	</script>
+</div>
+
 </body>
 </html>
 
