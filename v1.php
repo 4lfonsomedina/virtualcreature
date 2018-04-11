@@ -8,6 +8,9 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/virtualcreature.js"></script>
 	<style type="text/css">
+		.modal-content{
+			border-radius: 30px !important;
+		}
 		body{
 			font-family: Courier New;
 			background-color: #FFD700;
@@ -43,17 +46,18 @@
 		}
 		.carcasa{
 			border-radius: 30px !important;
-			background: linear-gradient(to bottom right, #ff9933 0%, #cc0000 100%);
-			border-color: gray;
+			background-color:  #D22020;
+			border-color: #D22020;
 		}
 		.pantalla{
 			border-radius: 10px !important;
 		}
-		#donate_modal{
-			border-radius: 0px;
+		.res td{
+			padding-top: 5px;
+			font-size: 10px;
 		}
-		.res td {
-			padding-top: 15px;
+		.tabla_energia td {
+			padding-top: 5px;
 			font-size: 10px;
 		}
 		.barra1{
@@ -66,6 +70,28 @@
 			width: 50%;
 			background-color: black;
 		}
+		.puntos{
+			font-weight: bold;
+		}
+		.desc_hab{
+			text-align: right;
+			padding-right: 6px;
+		}
+		.carcasa-titulo{
+			text-align: center;
+			background-color: white;
+			font-size: 16px;
+			font-weight: bold;
+			border-radius:15px; 
+		}
+		.bateria{
+			height: 10px;
+			width: 10px;
+			background-color: white;
+		}
+		.tiene_bateria{
+			background-color: black !important;
+		}
 	</style>
 </head>
 <body>
@@ -73,6 +99,11 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 		<div class="panel panel-default carcasa">
+			<div class="col-xs-12">
+				<div class="col-xs-2"></div>
+				<div class="col-xs-8 carcasa-titulo">Panfilo Filomeno</div>
+
+			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-xs-3 vc_menu"><a href="#" id="btn_m_comer" btn="m_comer"><img src="img/menu/m_comer.png"></a></div>
@@ -83,23 +114,56 @@
 				<div class="row">
 					<div class="col-xs-2 vc_menu vc_alto a"><a href="#" btn="m_compartir"><img src="img/menu/m_compartir.png"></a></div>
 					<div class="col-xs-8 vc_alto">
+<!--
+	Zona de bateria
+-->
 						<div class="col-xs-12" style="height: 140px;">
+					<table class="tabla_energia" width="100%">
+						<tr>
+							<td id="contador_bateria">Energy</td>
+							<td><div class="bateria" id="bat_1"></div></td>
+							<td><div class="bateria" id="bat_2"></div></td>
+							<td><div class="bateria" id="bat_3"></div></td>
+							<td><div class="bateria" id="bat_4"></div></td>
+							<td><div class="bateria" id="bat_5"></div></td>
+							<td><div class="bateria" id="bat_6"></div></td>
+							<td><div class="bateria" id="bat_7"></div></td>
+							<td><div class="bateria" id="bat_8"></div></td>
+							<td><div class="bateria" id="bat_9"></div></td>
+							<td><div class="bateria" id="bat_10"></div></td>
+						</tr>
+					</table>
+
+					<br>
+<!--
+	Zona de estatus de la creatura
+-->
 							<table class="res">
 								<tr>
-									<td><div class="barra1"><div class="barra2" id="hap_bar"></div></div></td><td>Happiness</td>
-									<td><div class="barra1"><div class="barra2" id="int_bar"></div></div></td><td>Intelligence</td>
+									<td class="desc_hab">Food</td>
+									<td><div class="barra1"><div class="barra2" id="foo_bar"></div></div></td>
+									<td class="desc_hab">Level</td><td class="puntos">30</td>
 								</tr>
 								<tr>
-									<td><div class="barra1"><div class="barra2" id="foo_bar"></div></div></td><td>Food</td>
-									<td><div class="barra1"><div class="barra2" id="for_bar"></div></div></td><td>Force</td>
+									<td class="desc_hab">Happiness</td>
+									<td ><div class="barra1"><div class="barra2" id="hap_bar"></div></div></td>
+									<td class="desc_hab">Intelligence</td><td class="puntos">16</td>
 								</tr>
+								<tr>
+									<td class="desc_hab">Cleaning</td>
+									<td><div class="barra1"><div class="barra2" id="cle_bar"></div></div></td>
+									<td class="desc_hab">Force</td><td class="puntos">20</td>
+								</tr>
+
 							</table>
 						</div>
+
 						<div class="panel panel-default" style="height: 100%">
 							<div class="panel-body pantalla">
 <!--
-								<table border="1">
---><table>
+<table border="1">
+-->
+								<table>
 									<tr>
 										<td class="vc_celda_estatus" id="vc_ce1"></td>
 										<td class="vc_celda_estatus" id="vc_ce2"></td>
@@ -199,6 +263,7 @@
   </div>
 </div>
 
+<!-- Precargado de imagenes -->
 
 <div class="hidden">
 	<script type="text/javascript">
@@ -213,6 +278,8 @@
 				"img/creature/estatus/estatus1.gif",
 				"img/creature/estatus/estatus2.gif",
 				"img/creature/estatus/estatus3.gif",
+				"img/creature/estatus/experiencia.gif",
+
 				"img/creature/lvl1/creature1.gif",
 				"img/creature/lvl1/creature2.gif",
 				"img/creature/lvl1/creature3.gif",
@@ -220,6 +287,18 @@
 				"img/creature/lvl1/creature5.gif",
 				"img/creature/lvl1/creature6.gif",
 				"img/creature/lvl1/creature7.gif",
+
+				"img/menu/h_m_comer.png",
+				"img/menu/h_m_limpiar.png",
+				"img/menu/h_m_vacuna.png",
+				"img/menu/h_m_info.png",
+				"img/menu/h_m_compartir.png",
+				"img/menu/h_m_donar.png",
+				"img/menu/h_m_ejercicio.png",
+				"img/menu/h_m_leer.png",
+				"img/menu/h_m_batalla.png",
+				"img/menu/h_m_clasificacion.png",
+
 				"img/comida/c1.gif",
 				"img/acciones/bano.gif",
 				"img/acciones/caca.gif",

@@ -8,6 +8,7 @@ function estado_normal_iniciar(){
 	clearInterval(t_caminar);
 	t_caminar = setInterval(function(){ caminar(); }, 8000);
 }
+un_segundo = setInterval(function(){ decision_cargar_energia(); }, 1000);
 function estado_normal_parar(){
 	clearInterval(t_caminar);
 }
@@ -45,6 +46,29 @@ function alegria(){
 	var lvl 	= get_nivel();
 	var alegria = "<img src='img/creature/"+lvl+"/creature6.gif'>";
 	var estado 	= "<img src='img/creature/estatus/estatus2.gif'>";
+	var criatura_actual  = $("#vc_c"+posicion).html();
+	var estado_actual  = $("#vc_ce"+posicion).html();
+	estado_normal_parar();
+	$("#vc_c"+posicion).html(alegria);
+	$("#vc_ce"+posicion).html(estado);
+	setTimeout(function(){
+		$("#vc_c"+posicion).html(criatura_actual);
+		$("#vc_ce"+posicion).html(estado_actual);
+		estado_normal_iniciar();
+	},4000);
+
+
+}
+///////////////////////////////////////////////////////////////////////	
+//************************** EXPERIENCIA ***************************//
+/////////////////////////////////////////////////////////////////////
+//alegria
+function experiencia(){
+	quitar_bateria();
+	var posicion = get_posicion();
+	var lvl 	= get_nivel();
+	var alegria = "<img src='img/creature/"+lvl+"/creature6.gif'>";
+	var estado 	= "<img src='img/creature/estatus/experiencia.gif'>";
 	var criatura_actual  = $("#vc_c"+posicion).html();
 	var estado_actual  = $("#vc_ce"+posicion).html();
 	estado_normal_parar();
@@ -158,12 +182,12 @@ function leer(){
 		$("#vc_c"+posicion).html(criatura_actual);
 		$("#vc_c"+(posicion+1)).html("");
 			$("#vc_ce"+posicion).html(estado_actual);
-			alegria();
+			experiencia();
 			estado_normal_iniciar();
 		},7500);
 }
 ///////////////////////////////////////////////////////////////////////	
-//******************************* LEER *****************************//
+//******************************* EJERCICIO ************************//
 /////////////////////////////////////////////////////////////////////
 $("#btn_m_ejercicio").click(function(){
 	if(ocupado()){
@@ -184,9 +208,55 @@ function ejercicio(){
 		$("#vc_c"+posicion).html(criatura_actual);
 		$("#vc_c"+(posicion+1)).html("");
 			$("#vc_ce"+posicion).html(estado_actual);
-			alegria();
+			experiencia();
 			estado_normal_iniciar();
 		},7500);
+}
+///////////////////////////////////////////////////////////////////////	
+//********************** AJUSTAR ENERGIA ***************************//
+/////////////////////////////////////////////////////////////////////
+var temp_energia=10;
+ajustar_energia(temp_energia);
+var limite_tiempo = 900;
+var cargando = false;
+var tiempo_bateria = 0;
+var una_bateria;
+function quitar_bateria(){
+	temp_energia=temp_energia-1;
+	ajustar_energia(temp_energia);
+}
+function decision_cargar_energia(){
+	if(!cargando&&temp_energia<10){
+		cargando=true;
+		una_bateria = setInterval(function(){ func_contador_bateria();}, 1000);
+	}
+	$(".bateria").html("");
+	if(temp_energia<10){
+		$("#bat_"+(temp_energia+1)).html(limite_tiempo-tiempo_bateria);
+	}else{
+		$("#bat_"+(temp_energia)).html(tiempo_bateria);
+	}
+}
+function func_contador_bateria(){
+	tiempo_bateria++;
+	if(tiempo_bateria>limite_tiempo){
+		tiempo_bateria=0;
+		clearInterval(una_bateria);
+		cargando = false;
+		dar_energia();
+	}
+}
+function dar_energia(){
+	if(temp_energia<10){
+		temp_energia++;
+		ajustar_energia(temp_energia);
+	}
+}
+function ajustar_energia(cant_baterias){
+	$(".bateria").removeClass("tiene_bateria");
+	for(var i = 1; i <= cant_baterias; i++){
+		$("#bat_"+i).addClass("tiene_bateria");
+	}
 }
 ///////////////////////////////////////////////////////////////////////	
 //****************************** OCUPADO? **************************//
